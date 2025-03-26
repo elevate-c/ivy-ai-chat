@@ -39,7 +39,6 @@ function sendMessage() {
 
     // Ajout à l'historique
     chatHistory += `User: ${userInput}\n`;
-    localStorage.setItem("chatHistory", chatHistory);
 
     // Envoi à Ivy avec instructions détaillées
     fetch(API_URL, {
@@ -68,9 +67,34 @@ function sendMessage() {
 function addMessage(sender, message) {
     let chatBox = document.getElementById("chatBox");
     let messageElement = document.createElement("div");
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+
+    // Obtenir l'heure au format PM/AM
+    let currentTime = new Date();
+    let hours = currentTime.getHours();
+    let minutes = currentTime.getMinutes();
+    let ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    let timeString = `${currentTime.toLocaleString('en-US', { month: 'short' })} ${currentTime.getDate()}, ${currentTime.getFullYear()} at ${hours}:${minutes} ${ampm}`;
+
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message} <br><small>${timeString}</small>`;
     chatBox.appendChild(messageElement);
     chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+// Afficher l'historique au chargement du site
+window.onload = function() {
+    let storedHistory = localStorage.getItem("chatHistory");
+    if (storedHistory) {
+        let messages = storedHistory.split('\n').filter(msg => msg);
+        messages.forEach(msg => {
+            let parts = msg.split(": ");
+            let sender = parts[0];
+            let message = parts.slice(1).join(": ");
+            addMessage(sender, message);
+        });
+    }
 }
 
 function handleKeyPress(event) {
