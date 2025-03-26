@@ -1,60 +1,73 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #121212;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.chat-container {
-    width: 90%;
-    max-width: 400px;
-    background: #1E1E1E;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-.chat-header {
-    background: #FF3748;
-    padding: 15px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.chat-box {
-    height: 400px;
+/* Conteneur de chat */
+#chatBox {
     overflow-y: auto;
+    height: 80vh;
     padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.input-container {
+/* Style pour chaque message */
+.message-container {
     display: flex;
-    padding: 10px;
-    background: #333;
+    flex-direction: column;
+    margin-bottom: 15px;
 }
 
-input {
-    flex: 1;
-    padding: 10px;
-    border: none;
-    outline: none;
-    background: #222;
-    color: white;
-    border-radius: 5px;
+/* Pour centrer la date au centre de chaque conversation */
+.message-date {
+    text-align: center;
+    font-size: 0.9em;
+    color: #aaa;
+    margin: 5px 0;
+    width: 100%;
 }
 
-button {
-    padding: 10px;
-    background: #FF3748;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-left: 5px;
+/* Message de l'utilisateur aligné à droite */
+.message.user {
+    background-color: #FF3748;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    max-width: 70%;
+    margin-left: auto; /* Aligne à droite */
+    position: relative;
+}
+
+/* Flèche de l'utilisateur pointant vers la droite */
+.message.user::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    border: 10px solid transparent;
+    border-left-color: #FF3748; /* Couleur de la bulle */
+    border-right: 0;
+    margin-top: -5px;
+}
+
+/* Message de l'IA aligné à gauche */
+.message.ai {
+    background-color: #EC5B55;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    max-width: 70%;
+    margin-right: auto; /* Aligne à gauche */
+    position: relative;
+}
+
+/* Flèche de l'IA pointant vers la gauche */
+.message.ai::after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    border: 10px solid transparent;
+    border-right-color: #EC5B55; /* Couleur de la bulle */
+    border-left: 0;
+    margin-top: -5px;
 }
 
 /* Style pour la date et l'heure au centre */
@@ -62,28 +75,5 @@ button {
     text-align: center;
     font-size: 0.9em;
     color: #aaa;
-    margin: 10px 0;
-}
-
-.message-container {
-    margin-bottom: 15px;
-}
-
-.message {
-    font-size: 1em;
-    color: #000;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Message utilisateur */
-.message strong {
-    color: #FF3748; /* Couleur pour l'utilisateur */
-}
-
-/* Message Ivy */
-.message strong {
-    color: #EC5B55; /* Couleur pour Ivy */
+    margin: 5px 0;
 }
