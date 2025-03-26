@@ -79,11 +79,16 @@ function handleKeyPress(event) {
 
 // Suppression de l'historique avec confirmation
 function deleteHistory() {
-    let confirmDelete = prompt("Type '|/DELETE FULL HISTORY/|' to confirm:");
+    // 🔥 Étape 1 : Demande de confirmation
+    let confirmDelete = prompt("⚠️ To confirm, type: |/DELETE FULL HISTORY/|");
+
+    // 🔥 Étape 2 : Vérifie si l'utilisateur a bien tapé la confirmation
     if (confirmDelete === "|/DELETE FULL HISTORY/|") {
-        localStorage.removeItem("chatHistory");
-        document.getElementById("chatBox").innerHTML = "";
-        chatHistory = "";
-        alert("Chat history deleted!");
+        localStorage.removeItem("chatHistory"); // Efface l'historique stocké sur le navigateur
+        document.getElementById("chatBox").innerHTML = ""; // Vide l'affichage du chat
+        chatHistory = ""; // Réinitialise la variable d'historique
+        alert("✅ Chat history successfully deleted!"); // Message de confirmation
+    } else {
+        alert("❌ Deletion canceled. The history was not erased."); // Message si l'utilisateur annule
     }
 }
