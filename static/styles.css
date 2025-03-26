@@ -56,3 +56,34 @@ button {
     cursor: pointer;
     margin-left: 5px;
 }
+
+/* Style pour la date et l'heure au centre */
+.message-date {
+    text-align: center;
+    font-size: 0.9em;
+    color: #aaa;
+    margin: 10px 0;
+}
+
+.message-container {
+    margin-bottom: 15px;
+}
+
+.message {
+    font-size: 1em;
+    color: #000;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Message utilisateur */
+.message strong {
+    color: #FF3748; /* Couleur pour l'utilisateur */
+}
+
+/* Message Ivy */
+.message strong {
+    color: #EC5B55; /* Couleur pour Ivy */
+}
