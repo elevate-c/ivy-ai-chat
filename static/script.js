@@ -78,8 +78,25 @@ function addMessage(sender, message) {
     minutes = minutes < 10 ? '0' + minutes : minutes;
     let timeString = `${currentTime.toLocaleString('en-US', { month: 'short' })} ${currentTime.getDate()}, ${currentTime.getFullYear()} at ${hours}:${minutes} ${ampm}`;
 
-    messageElement.innerHTML = `<strong>${sender}:</strong> ${message} <br><small>${timeString}</small>`;
-    chatBox.appendChild(messageElement);
+    // Créer une structure pour afficher la date au milieu entre les messages
+    let dateElement = document.createElement("div");
+    dateElement.classList.add("message-date");
+    dateElement.innerHTML = `<span class="date-time">${timeString}</span>`;
+
+    let messageContainer = document.createElement("div");
+    messageContainer.classList.add("message-container");
+    
+    // Afficher l'heure au milieu, entre chaque message
+    messageContainer.appendChild(dateElement);
+
+    // Créer le message utilisateur ou Ivy
+    let senderMessage = document.createElement("div");
+    senderMessage.classList.add("message");
+    senderMessage.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    
+    messageContainer.appendChild(senderMessage);
+    chatBox.appendChild(messageContainer);
+
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
